@@ -7,21 +7,11 @@ import path from "path";
 
 dotenv.config();
 
-const __dirname = path.resolve();
-console.log(__dirname);
-console.log(path.join(__dirname, "..", 'Amazon-clone', 'dist'))
 
 const secrete_key = process.env.STRIPE_SECRET;
 const stripe = new Stripe(`${secrete_key}`);
 const app = express();
 
-// to serve the frontend 
-app.use(express.static(path.join(__dirname,'..', 'Amazon-clone/dist')));
-
-// to redirect any routes to index.html since all the frontend route is inside index
-app.get('*', (req, res)=>{
-    res.sendFile(path.join(__dirname, '..', 'Amazon-clone', 'dist', 'index.html'))
-})
 
 app.use(cors());
 
